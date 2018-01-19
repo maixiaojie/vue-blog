@@ -43,6 +43,7 @@
 </template>
 <script type="text/javascript">
 	// import { Waterfall, WaterfallSlot } from 'vue-waterfall'
+	import api from '../../util/api.js'
 	export default {
 		name: 'Blog',
 		components: {
@@ -80,6 +81,14 @@
 					tags: ['javascript', 'vue', 'reload'],
 					times: 256,
 					time: '01-01 2018'					
+				})
+			}
+			this.getAllBlog()
+		},
+		methods: {
+			getAllBlog() {
+				api.getAllBlog({}, function(data) {
+					console.log(data)
 				})
 			}
 		}

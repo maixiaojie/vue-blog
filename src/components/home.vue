@@ -1,8 +1,7 @@
 <template>
   <div class="hello">
       <myHeader></myHeader>
-      <router-view/>
-      
+      <router-view/>      
       <myFooter></myFooter>
   </div>
 </template>
@@ -16,6 +15,9 @@ export default {
   data () {
     return {
     }
+  },
+  created() {
+    
   },
   components: {
     myFooter,

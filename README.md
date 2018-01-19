@@ -18,4 +18,8 @@ npm run build
 npm run build --report
 ```
 
+# [v-bar](https://github.com/luiguild/v-bar)
+
+# [Vue-progressbar](https://github.com/hilongjw/vue-progressbar)
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

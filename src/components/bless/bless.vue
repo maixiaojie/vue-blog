@@ -1,17 +1,17 @@
 <template>
 	<div @click="contentClick">
-		<Row >
+		<Row>
 			<Col class="b-top" span="24" :style="{'height': height + 'px'}">
 				<h1 class="b-top-title"><Icon type="chatbubble-working"></Icon>&nbsp;说点啥</h1>
 				<div class="postContainer">
 					<div class="b-container">
 						<div class="b-con-l">
-							<div class="b-con-l-t">
+							<div class="b-con-l-t" @click="openInput">
 								<img src="../../assets/default.jpg" height="50" width="50"></div>
-							<div class="b-con-l-b">你的大名</div>
+							<div class="b-con-l-b" @click="openInput">{{form.username}}</div>
 						</div>
 						<div class="b-con-r" :class="[textClass]">
-							<textarea v-on:focus="focusText" v-on:blur="blurText" v-model="form.content"></textarea>							
+							<textarea v-on:focus="focusText" v-on:blur="blurText" v-model="form.content"></textarea>
 						</div>
 					</div>
 					<div class="btnContainer" :style="{'height': btnHeight + 'px'}">
@@ -19,8 +19,29 @@
 					</div>
 				</div>				
 			</Col>
-			<Col span="24">
-				
+			<Col span="24" style="background: #f4f4f4;">
+				<div class="blessPage">
+					<Row :gutter="20">
+				        <Col span="18">
+					        <div class="listContainer">
+					        	<div class="list" v-for="item in items">
+					            	<div class="avatar">
+					            		<img src="../../assets/default.jpg">
+					            	</div>
+					            	<div class="content">
+					            		<div class="caption">{{item.name}}</div>
+					            		<div class="text">{{item.text}}</div>
+					            		<div class="foot">{{item.time}}<span class="replyBtn">回复</span></div>
+					            	</div>
+					            </div>
+					        </div>
+				            
+				        </Col>
+				        <Col span="6">
+				            <div class="person">col-6</div>
+				        </Col>
+				    </Row>
+				</div>
 			</Col>
 
 		</Row>	
@@ -32,8 +53,30 @@
 		data() {
 			return {
 				form: {
-					content: '评论屌一点，BUG少一点！'
+					content: '评论屌一点，BUG少一点！',
+					username: '匿名'
 				},
+				items: [{
+					name: 'tracy',
+					text: '哈哈哈哈哈',
+					time: '13:43 2018-1-18'
+				},{
+					name: 'tracy',
+					text: '哈哈哈哈哈',
+					time: '13:43 2018-1-18'
+				},{
+					name: 'tracy',
+					text: '哈哈哈哈哈',
+					time: '13:43 2018-1-18'
+				},{
+					name: 'tracy',
+					text: '哈哈哈哈哈',
+					time: '13:43 2018-1-18'
+				},{
+					name: 'tracy',
+					text: '哈哈哈哈哈',
+					time: '13:43 2018-1-18'
+				}],
 				height: 500,
 				btnHeight: 0,
 				textClass: 'b-con-r',
@@ -41,6 +84,7 @@
 			}
 		},
 		created() {
+			this.$Progress.start()
 			this.height = this.getHeight() - 100
 		},
 		methods: {
@@ -54,7 +98,7 @@
 				if(this.form.content === '评论屌一点，BUG少一点！') {
 					this.form.content = ''
 				}
-			},
+			},			
 			blurText() {
 				this.textClass = 'b-con-r'
 				if(this.form.content === '') {
@@ -64,18 +108,37 @@
 			postData() {
 				console.log('1')
 			},
+			openInput() {
+				this.$Modal.confirm({
+					render: (h) => {
+						return h('Input', {
+							props: {
+								value: this.form.username,
+								autofocus: true,
+								placeholder: '输入'
+							},
+							on: {
+								input:  (val) => {
+									this.form.username = val
+								}
+							}
+						})
+					}
+				})
+			},
 			contentClick(e) {				
 				if(e.target.className === 'b-top-title' || e.target.className === 'postContainer' || e.target.className === 'b-top ivu-col ivu-col-span-24') {
 					this.btnHeight = 0
 					this.isBtnShow = 'none'
 				}
-			}
+			},
+
 		}
 	}
 </script>
 <style type="text/css">
 	.b-top {
-		background: url('../../assets/comment_2_@2x.4679e0fc.jpg');
+		background: url('../../assets/comment_2_@2x.4679e0fc.jpg') #cef;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: 50%;
@@ -170,5 +233,72 @@
 	}
 	.b-con-r textarea:focus {
 		outline: none;
+	}
+	.blessPage {
+		width: 1200px;
+		margin: 0 auto;
+		padding: 20px 0px;
+	}
+	.blessPage .listContainer {
+		width: 100%;
+		overflow: hidden;
+	    background: #fff;
+	    border-radius: 2px;
+	    box-shadow: 0 0 2px rgba(0,0,0,.2);
+	}
+	.blessPage .list {
+		width: 100%;
+		background: white;
+		display: flex;
+		border-bottom: 1px solid #eee;
+	}
+	.blessPage .list:hover {
+		background: #fafafa;
+	}
+	.list .avatar {
+		width: 80px;
+		height: 80px;
+		padding: 15px;
+	}
+	.list .avatar img{
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+	.list .content {
+		flex: 1;
+		min-height: 80px;
+		padding: 15px 15px 15px 0;
+	}
+	.content .caption {
+		width: 100%;
+		margin-bottom: 10px;
+		line-height: 18px;
+		font-weight: 500px;
+		font-size: .85rem;
+	}
+	.content .text {
+		width: 100%;
+		min-height: 20px;
+		margin-bottom: 10px;
+		line-height: 1.5;
+		font-size: 0.85rem;
+		color: #333;
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+	.content .foot {
+		width: 100%;
+		color: #aaa;
+	}
+	.content .foot .replyBtn {
+		float: right;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+	.blessPage .person {
+		width: 100%;
+		background: #eee;
+		height: 100px;
 	}
 </style>

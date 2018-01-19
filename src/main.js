@@ -6,10 +6,16 @@ import router from './router'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import VueParticles from 'vue-particles'
+import VueProgressBar from 'vue-progressbar'
 Vue.config.productionTip = false
 
 Vue.use(iView)
 Vue.use(VueParticles)
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '2px'
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
