@@ -1,5 +1,5 @@
 <template>
-	<div class="footer">footer</div>
+	<div class="footer" :style="{'display': isShow}">footer</div>
 </template>
 
 <script type="text/javascript">
@@ -7,8 +7,11 @@
 		name: 'myFooter',
 		data() {
 			return {
-
+				isShow: 'block'
 			}
+		},
+		created() {
+
 		}
 	}
 </script>

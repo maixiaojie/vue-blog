@@ -11,7 +11,7 @@
 					<li><a href="/#/timeline">时间轴</a></li>					
 					<li><a href="/">实验室</a></li>
 					<li><a href="">小游戏</a></li>
-					<li><a href="">留言</a></li>
+					<li><a href="/#/bless">留言</a></li>
 					<li><a href="/#/new">new</a></li>
 				</ol>
 			</Col>		
@@ -27,9 +27,19 @@
 				headClass: 'headerIndex'
 			}
 		},
+		created() {
+			if(this.$route.path === '/') {
+				this.headClass = 'headerIndex'
+			}else {
+				this.headClass = 'header'
+			}
+		},
 		watch: {
 			'$route' (to, from) {
 				let that = this
+				console.log(to)
+				console.log(from)
+
 				if(to.path == '/') {
 					that.headClass = 'headerIndex'
 				}else {

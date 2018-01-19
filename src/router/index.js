@@ -6,6 +6,7 @@ import Blog from '@/components/blog/blog'
 import BlogDetail from '@/components/blog/detail'
 import BlogNew from '@/components/blog/new'
 import TimeLine from '@/components/blog/timeline'
+import Bless from '@/components/bless/bless'
 Vue.use(Router)
 
 export default new Router({
@@ -19,8 +20,11 @@ export default new Router({
 	    	path: '/',
 	    	name: 'index',
 	    	component: index
-	    },
-			{
+	    },{
+	    	path: '/bless',
+	    	name: 'Bless',
+	    	component: Bless
+	    },{
 	    	path: '/blog',
 	    	name: 'Blog',
 	    	component: Blog

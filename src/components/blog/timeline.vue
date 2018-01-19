@@ -1,5 +1,6 @@
 <template>
-	<div class="container">
+	<Row class="container">
+		<Col>
 		<Timeline class="timeline">
 			<TimelineItem>
 	           <p class="time">2018年01月</p>
@@ -32,7 +33,8 @@
 	           <p class="content"><a href="">设计 Timeline 时间轴来更精确地控制动画</a><span>2017-08-22</span></p>
 			</TimelineItem>		
 		</Timeline>
-	</div>
+		</Col>
+	</Row>
 </template>
 <script type="text/javascript">
 	export default {
@@ -51,7 +53,7 @@
 	}
 	.timeline {
 		width: 500px;
-		margin: 0 auto ;
+		margin: 0 auto !important;
 	}
 	.time{
         font-size: 14px;
